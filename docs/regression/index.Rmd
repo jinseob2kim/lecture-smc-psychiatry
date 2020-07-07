@@ -1,0 +1,152 @@
+---
+title: "회귀분석 in 의학연구"
+author: 김진섭; [`r anicon::faa('github', animate='float', rtext='jinseob2kim')`](https://github.com/jinseob2kim)
+institute: "차라투"
+date: "2020-07-28"
+output:
+  xaringan::moon_reader:
+    css: ["css/footer-header.css", "default"]
+    lib_dir: libs
+    nature:
+      beforeInit: "js/macros.js"
+      slideNumberFormat: |
+        <div class="progress-bar-container">
+          </div>
+          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "4:3" 
+subtitle: "삼성서울병원 정신건강의학과 교육"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = T, fig.align = "center", message = F, warning = F)
+library(knitr);library(DT);library(reactable)
+```
+
+
+layout: true
+
+<div class="my-footer"><span><a href="https://www.zarathu.com">Zarathu Co.,Ltd</a>   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+<a href="https://github.com/jinseob2kim">김진섭</a></span></div> 
+
+
+
+---
+# Executive Summary 
+
+.large[
+- 연속변수의 2그룹 비교: 정규분포 인정하면 **t-test**, 아니면 **Wilcox-test**
+
+- 연속변수의 3그룹 이상 비교: 정규분포 인정하면 **one-way ANOVA**, 아니면 **Kruskal–Wallis one-way ANOVA**
+
+- 범주형 변수의 그룹 비교: 샘플수 충분하면 **Chisq-test**, 아니면 **Fisher-test**
+
+]
+
+--
+
+.large[
+본사가 개발한 [웹](www.app.zarathu.com) 과 [R 패키지](https://CRAN.R-project.org/package=jsmodule) 에서 바로 Table 1 을 얻을 수 있다.
+]
+
+- 강의록은 https://blog.zarathu.com/posts/2018-11-24-basic-biostatistics 참고
+
+
+---
+# [회사 소개](https://www.zarathu.com)
+
+.large[
+맞춤형 의학통계지원을 업으로 하는 2년차 법인.
+
+- 의학연구자들에게 맞춤형 통계웹 제공.
+
+- 범용 통계웹 운영: http://app.zarathu.com
+
+- R 패키지 개발: [jskm](https://CRAN.R-project.org/package=jskm), [jstable](https://CRAN.R-project.org/package=jstable), [jsmodule](https://CRAN.R-project.org/package=jsmodule)
+
+- [Shinykorea](https://github.com/shinykorea/Meetup) 커뮤니티 후원: R로 웹만드는 공부모임
+
+]
+
+--
+
+.large[
+- 팀원 없음. 의대생 2명 통계보조 알바.
+
+]
+
+---
+# 강의자 이력 
+
+.large[
+김진섭- https://jinseob2kim.github.io/resume
+
+- 성균관의대 03학번
+
+- 예방의학 전문의, 보건학 박사수료 (서울대 보건대학원)
+
+- 소프트웨어 엔지니어, 삼성전자 무선사업부/DMC 연구소
+
+- R User Conference Korea(RUCK) [2018](https://ruck2018.r-kor.org/presentations/RUCK2018-%EA%B9%80%EC%A7%84%EC%84%AD-%EB%A7%9E%EC%B6%A4%ED%98%95_%EC%9D%98%ED%95%99%ED%86%B5%EA%B3%84_%EC%95%B1_%EC%A0%9C%EC%9E%91%EC%9D%84_%EC%9C%84%ED%95%9C_%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD_%EA%B5%AC%EC%B6%95.html), [2019](https://jinseob2kim.github.io/LectureRpackage/RUCK2019) 발표
+
+]
+
+---
+# 2020년 진행 프로젝트 
+
+- 대한심혈관중재학회 [COBIS III 레지스트리](https://clinicaltrials.gov/ct2/show/NCT03068494) 분석: [추가계약](http://pf.kakao.com/_XsuxgC/48388190)
+
+
+- 서울성모병원 [COREA-AMI II 레지스트리](https://clinicaltrials.gov/ct2/show/NCT02806102) 분석: [10개 연구 계약](http://pf.kakao.com/_XsuxgC/48043955)
+
+
+- 삼성서울병원 [공통데이터모델(CDM)](http://www.feedernet.org/html/?pmode=cdmdrn) 분석: [심평원 코로나데이터](https://hira-covid19.net/) 분석 중 
+
+
+- 강동성심병원 위암 위험인자 분석: 공단표본데이터 분석 중 
+
+
+- 경기도감염병관리지원단 코로나 대시보드 with Shinykorea: [최종보고](https://shinykorea.github.io/corona-activityrecord) 
+
+
+- 삼성서울병원 이식외과 육종(sarcoma) 데이터 분석: [5개 연구 계약](http://pf.kakao.com/_XsuxgC/51701089) 
+
+
+- 해운대백병원 정신질환 네트워크분석: [논문 4편](http://pf.kakao.com/_XsuxgC/52664370) 게재
+
+
+- 성균관의대 환경역학연구실 [미세먼지 대시보드](http://pf.kakao.com/_XsuxgC/43627405)
+
+
+
+
+---
+# Executive Summary 
+
+.large[
+- 연속변수의 2그룹 비교: 정규분포 인정하면 **t-test**, 아니면 **Wilcox-test**
+
+- 연속변수의 3그룹 이상 비교: 정규분포 인정하면 **one-way ANOVA**, 아니면 **Kruskal–Wallis one-way ANOVA**
+
+- 범주형 변수의 그룹 비교: 샘플수 충분하면 **Chisq-test**, 아니면 **Fisher-test**
+
+본사가 개발한 [웹](www.app.zarathu.com) 과 [R 패키지](https://CRAN.R-project.org/package=jsmodule) 에서 바로 Table 1 을 얻을 수 있다.
+]
+
+
+- 강의록은 https://blog.zarathu.com/posts/2018-11-24-basic-biostatistics 참고
+
+
+---
+class: center, middle
+
+# END
+
+
