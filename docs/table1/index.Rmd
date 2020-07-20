@@ -207,7 +207,9 @@ ev.ttest
 
 - **R** 에서 디폴트도 `F` 임.
 
-- 2그룹에서 ANOVA 하면 등분산 가정한 t-test와 동일.
+- 2그룹에서 ANOVA 하면 (등분산 가정한) t-test와 동일.
+
+  : 등분산 가정없는 ANOVA 도 있음.
 
 
 ---
@@ -256,7 +258,7 @@ res.wilcox
 --
 - 사후(post-hoc) 분석을 이용, 어떤 것이 튀는지를 알아볼 수도 있다.
 
-- **ANOVA**는 비교할 모든 그룹에서 분산이 같다는 등분산 가정 하에 분석을 수행하며, 실제로 2 그룹일 때 **ANOVA**를 수행하면 등분산 가정 하에 수행한 **t-test**와 동일한 결과를 얻는다. 위에도 언급했듯이 모든 그룹에서 분산이 같다는 것은 너무 위험한 가정이나, 3 그룹 이상인 경우 마땅한 대안이 없고 Table 1에서 엄밀한 통계를 요구하는 것도 아니기 때문에 그냥 **ANOVA**를 쓰는 것이 관행이다
+- 보통 우리가 쓰는 **ANOVA**는 비교할 모든 그룹에서 분산이 같다는 등분산 가정 하에 분석을 수행하며, 실제로 2 그룹일 때 **ANOVA**를 수행하면 등분산 가정 하에 수행한 **t-test**와 동일한 결과를 얻는다. 물론 등분산 가정없는 generalized ANOVA 도 있고 본사는 이것을 디폴트로 사용한다. 
 
 
 
@@ -270,12 +272,14 @@ datatable(data.aov, rownames = T, caption = "data.t: group and total cholesterol
 
 ---
 ```{r, echo = T}
-res.aov <- aov(tChol ~ group, data = data.aov)
-summary(res.aov)
+res.aov1 <- oneway.test(tChol ~ group, data = data.aov, var.equal = F)
+res.aov1
+res.aov2 <- oneway.test(tChol ~ group, data = data.aov, var.equal = T)
+res.aov2
 ```
 
 .large[
-> 결과에서 나온 $p$-value인 `r round(summary(res.aov)[[1]][1, 5], 3)`가 Table 1에 이용되며 의미는 "**3 그룹에서 총콜레스테롤 값이 비슷하다**(다른 것이 있다고 할 수 없다)" 이다.
+> 등분산 가정없는 $p$-value인 `r round(res.aov1$p.value, 3)`를 이용하며, 의미는 "**3 그룹에서 총콜레스테롤 값이 비슷하다**(다른 것이 있다고 할 수 없다)" 이다.
 ]
 
 ---
