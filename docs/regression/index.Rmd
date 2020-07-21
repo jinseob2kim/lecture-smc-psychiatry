@@ -42,22 +42,14 @@ layout: true
 # Executive Summary 
 
 .large[
-- 연속변수의 2그룹 비교: 정규분포 인정하면 **t-test**, 아니면 **Wilcox-test**
-
-- 연속변수의 3그룹 이상 비교: 정규분포 인정하면 **one-way ANOVA**, 아니면 **Kruskal–Wallis one-way ANOVA**
-
-- 범주형 변수의 그룹 비교: 샘플수 충분하면 **Chisq-test**, 아니면 **Fisher-test**
+|                      | Dafault           | Repeated measure | Survey     |
+|----------------------|-------------------|------------------|------------|
+| **Continuous**           | linear regression | GEE              | Survey GLM |
+| **Event**                  | GLM (logistic)    | GEE              | Survey GLM |
+| **Time & Event**         | Cox               | marginal Cox     | Survey Cox |
+| **0,1,2,3 (rare event)** | GLM (poisson)     | GEE              | Survey GLM |
 
 ]
-
---
-
-.large[
-본사가 개발한 [웹](www.app.zarathu.com) 과 [R 패키지](https://CRAN.R-project.org/package=jsmodule) 에서 바로 Table 1 을 얻을 수 있다.
-]
-
-- 강의록은 https://blog.zarathu.com/posts/2018-11-24-basic-biostatistics 참고
-
 
 ---
 # [회사 소개](https://www.zarathu.com)
@@ -131,18 +123,14 @@ layout: true
 # Executive Summary 
 
 .large[
-- 연속변수의 2그룹 비교: 정규분포 인정하면 **t-test**, 아니면 **Wilcox-test**
+|                      | Dafault           | Repeated measure | Survey     |
+|----------------------|-------------------|------------------|------------|
+| **Continuous**           | linear regression | GEE              | Survey GLM |
+| **0/1**                  | GLM (logistic)    | GEE              | Survey GLM |
+| **Time & Event**         | Cox               | marginal Cox     | Survey Cox |
+| **0,1,2,3 (rare event)** | GLM (poisson)     | GEE              | Survey GLM |
 
-- 연속변수의 3그룹 이상 비교: 정규분포 인정하면 **one-way ANOVA**, 아니면 **Kruskal–Wallis one-way ANOVA**
-
-- 범주형 변수의 그룹 비교: 샘플수 충분하면 **Chisq-test**, 아니면 **Fisher-test**
-
-본사가 개발한 [웹](www.app.zarathu.com) 과 [R 패키지](https://CRAN.R-project.org/package=jsmodule) 에서 바로 Table 1 을 얻을 수 있다.
 ]
-
-
-- 강의록은 https://blog.zarathu.com/posts/2018-11-24-basic-biostatistics 참고
-
 
 ---
 class: center, middle
