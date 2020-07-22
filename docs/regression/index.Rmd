@@ -25,7 +25,8 @@ editor_options:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo = T, fig.align = "center", message = F, warning = F)
-library(knitr);library(DT);library(reactable)
+library(knitr);library(DT);library(survival);library(jstable);library(jskm)
+colon <- na.omit(colon)
 ```
 
 
@@ -117,7 +118,236 @@ layout: true
 - 성균관의대 환경역학연구실 [미세먼지 대시보드](http://pf.kakao.com/_XsuxgC/43627405)
 
 
+---
+# 실습데이터 
 
+```{r, echo=F}
+rmarkdown::paged_table(colon)
+
+```
+
+
+---
+class: center, middle
+
+# Linear regression
+
+### Continuous
+
+
+---
+# Simple 
+
+```{r, echo=F, fig.align='center'}
+include_graphics("https://nextjournal.com/data/QmfPuPp4V74FyvTTojMj6ix9T8Skj1ji4GhX5Pr6zK8w4N?filename=linear-regression.png&content-type=image/png")
+```
+
+.large[
+$$Y = \beta_0 + \beta_1 X + \epsilon$$
+]
+
+- 오차제곱합을 최소로하는 $\beta_0, \beta_1$ 구한다.
+
+- $Y$ 정규분포하는 연속변수, $X$ 는 연속, 범주형 다 가능
+    + $X$ 연속변수일 땐 **상관분석** 과 동일
+    + $X$ 2범주일 땐 **`t.test` with 등분산** 과 동일
+
+
+---
+
+```{r}
+cor.test(colon$age, colon$nodes)
+summary(lm(nodes ~ age, data = colon))$coefficients
+summary(lm(age ~ nodes, data = colon))$coefficients
+```
+
+
+---
+
+```{r}
+t.test(time ~ sex, data = colon, var.equal = T)
+summary(lm(time ~ sex, data = colon))$coefficients
+```
+
+---
+# Multiple
+
+여러 변수들을 포함 
+
+.large[
+$$Y = \beta_0 + \beta_1 X_{1} + \beta_2 X_{2} + \cdots + \epsilon$$
+]
+
+- $\beta_1$ 해석: $X_2, X_3 \cdots$ 를 보정한다면, $X_1$ 이 1 증가할 때 $Y$ 가 $\beta_1$ 만큼 증가한다.
+
+
+--
+
+```{r}
+summary(lm(time ~ sex + age + rx, data = colon))$coefficients
+```
+
+.large[
+
+논문용 테이블은 **보정 전후 결과를 같이** 보여주는 것이 대세
+]
+
+---
+
+```{r, echo=F}
+tb.linear <- glmshow.display(glm(time ~ sex + age + rx, data = colon))
+out.linear <- jstable::LabelepiDisplay(tb.linear)
+
+hide <- which(colnames(out.linear) == "sig")
+datatable(out.linear, rownames=T, caption = tb.linear$first.line,
+              options = c(list(columnDefs = list(list(visible=FALSE, targets =hide))
+                          ),
+                          list(scrollX = TRUE)
+              )
+    ) %>% formatStyle("sig", target = 'row',backgroundColor = styleEqual("**", 'yellow'))    
+```
+
+
+---
+
+class: center, middle
+# Logistic regression
+
+### 0/1 
+
+
+---
+
+```{r, echo=F, fig.align='center'}
+include_graphics("https://static.javatpoint.com/tutorial/machine-learning/images/linear-regression-vs-logistic-regression.png")
+```
+
+.large[
+$$ P(Y = 1) = \frac{\exp{(X)}}{1 + \exp{(X)}}$$
+]
+
+
+---
+# Odds Ratio
+
+.large[
+
+
+$$
+\begin{aligned}
+ P(Y = 1) &= \frac{\exp{(\beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots)}}{1 + \exp{(\beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots)}} \\\\
+ \ln(\frac{p}{1-p}) &= \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots
+\end{aligned}
+$$
+]
+
+--
+.large[
+
+$\beta_1$ 해석: $X_2, X_3 \cdots$ 들 보정한다면, $X_1$이 1 증가할 때, $\ln(\frac{p}{1-p})$ 가 $\beta_1$ 만큼 증가한다.
+
+> $\frac{p}{1-p}$ 가 $\exp(\beta_1)$ 배 증가한다. 즉 Odd Ratio =  $\exp(\beta_1)$
+]
+
+
+---
+
+```{r}
+summary(glm(status ~ sex + age + rx, data = colon, family = binomial))
+```
+
+
+
+---
+
+```{r, echo=F}
+tb.linear <- glmshow.display(glm(status ~ sex + age + rx, data = colon, family = binomial))
+out.linear <- jstable::LabelepiDisplay(tb.linear)
+
+hide <- which(colnames(out.linear) == "sig")
+datatable(out.linear, rownames=T, caption = tb.linear$first.line,
+              options = c(list(columnDefs = list(list(visible=FALSE, targets =hide))
+                          ),
+                          list(scrollX = TRUE)
+              )
+    ) %>% formatStyle("sig", target = 'row',backgroundColor = styleEqual("**", 'yellow'))    
+```
+
+
+---
+
+class: center, middle
+# Cox proportional hazard
+
+### Time & Event 
+
+---
+
+# Time to event data
+
+```{r, echo=F, fig.align='center'}
+include_graphics("https://miro.medium.com/max/1440/1*S3lbo8tbgtklE7V-m4EsvQ.jpeg")
+
+```
+
+.large[
+대부분 **Right censored**: XX 일에 사망 or XX 일 까지 생존
+]
+
+
+---
+# Kaplan-meier plot
+
+.large[
+생존분석에서 table 1의 의미
+
+- 보통 **logrank test p-value** 를 같이 보여줌.
+]
+
+
+
+
+
+
+
+
+
+---
+
+```{r, fig.align='center', fig.width=10, fig.height=7, dpi=600}
+jskm(survfit(Surv(time, status) ~ rx, data = colon), table = T, pval = T, marks = F)
+```
+
+
+---
+
+```{r}
+summary(coxph(Surv(time, status) ~ sex + age + rx, data = colon))
+```
+
+
+
+---
+
+```{r, echo=F}
+res.cox <- coxph(Surv(time, status) ~ sex + age + rx, data = colon, model = T)
+tb.cox <- jstable::cox2.display(res.cox, dec = 2)
+#tb.cox <- jstable::LabeljsCox(tb.cox)
+out.cox <- rbind(tb.cox$table, tb.cox$metric)
+sig <- out.cox[, ncol(out.cox)]
+sig <- gsub("< ", "", sig)
+sig <- ifelse(as.numeric(as.vector(sig)) <= 0.05, "**", NA)
+out.cox <- cbind(out.cox, sig)
+hide <- which(colnames(out.cox) == c("sig"))
+    datatable(out.cox, rownames=T, caption = tb.cox$caption,
+              options = c(
+                          list(columnDefs = list(list(visible=FALSE, targets= hide))
+                          )
+              )
+    )  %>% formatStyle("sig", target = 'row',backgroundColor = styleEqual("**", 'yellow'))        
+    
+    
+```
 
 ---
 # Executive Summary 
