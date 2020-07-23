@@ -158,7 +158,7 @@ $$Y = \beta_0 + \beta_1 X + \epsilon$$
 ```{r}
 cor.test(colon$age, colon$nodes)
 summary(lm(nodes ~ age, data = colon))$coefficients
-summary(lm(age ~ nodes, data = colon))$coefficients
+summary(glm(age ~ nodes, data = colon))$coefficients
 ```
 
 
@@ -168,6 +168,40 @@ summary(lm(age ~ nodes, data = colon))$coefficients
 t.test(time ~ sex, data = colon, var.equal = T)
 summary(lm(time ~ sex, data = colon))$coefficients
 ```
+
+
+---
+# 3범주 이상?
+
+**rx**: 치료법 3개
+
+```{r}
+levels(colon$rx)
+```
+
+**더미변수로** 자동으로 바뀐 후 회귀식에 포함. 실제로는 변수 2개가 들어감
+
+```{r}
+tail(model.matrix(time ~ rx, data = colon))
+```
+
+둘다 0 이면 **Obs** (reference)
+
+
+---
+
+```{r}
+summary(lm(time ~ rx, data = colon))$coefficients
+```
+
+**Obs와 Lev+5FU** 군이 유의한 차이가 있음. **ANOVA** 형태로도 볼 수 있다 (등분산 가정).
+
+```{r}
+anova(lm(time ~ rx, data = colon))
+```
+
+ANOVA p-value 는 **rx 중 튀는 것이 있는지?** 를 통합평가.  
+
 
 ---
 # Multiple
@@ -295,6 +329,17 @@ include_graphics("https://miro.medium.com/max/1440/1*S3lbo8tbgtklE7V-m4EsvQ.jpeg
 ]
 
 
+
+---
+
+# Time to event 를 하나의 변수로 
+
+```{r, echo=F}
+rmarkdown::paged_table(data.frame(time = colon$time, status = colon$status, surv = with(colon, Surv(time, status))))
+
+```
+
+
 ---
 # Kaplan-meier plot
 
@@ -304,13 +349,28 @@ include_graphics("https://miro.medium.com/max/1440/1*S3lbo8tbgtklE7V-m4EsvQ.jpeg
 - 보통 **logrank test p-value** 를 같이 보여줌.
 ]
 
+```{r, echo=F, fig.align='center'}
+include_graphics("https://t1.daumcdn.net/cfile/tistory/174245394F460EE01F")
+
+```
+
+---
+
+# 계산: time 순서로 정렬
 
 
+$$
+\begin{aligned}
+P(t) &= \frac{t \text{ 구간 생존수}}{t \text{ 시점 관찰대상 수}} : \text{구간 생존율}\\\\
+S(t) & = S(t-1) \times P(t)
+\end{aligned}
+$$
 
+```{r, echo=F, fig.align='center'}
+include_graphics("https://t1.daumcdn.net/cfile/tistory/200AA9334F460EDE22")
+```
 
-
-
-
+출처: https://dermabae.tistory.com/180
 
 ---
 
@@ -318,6 +378,71 @@ include_graphics("https://miro.medium.com/max/1440/1*S3lbo8tbgtklE7V-m4EsvQ.jpeg
 jskm(survfit(Surv(time, status) ~ rx, data = colon), table = T, pval = T, marks = F)
 ```
 
+중도절단 marks 는 보통 생략.
+
+
+
+---
+
+```{r}
+summary(survfit(Surv(time, status) ~ rx, data = colon))
+```
+
+---
+# Logrank test
+
+구간별로 예상/기대 발생 수 계산 후 합쳐서 카이제곱검정 
+
+```{r}
+survdiff(Surv(time, status) ~ rx, data = colon)
+```
+
+각 구간들의 결과를 합친다?
+
+- 구간별 **발생 양상이 비슷**하다는 가정 (**비례위험(proportional hazards) 가정**)
+
+
+---
+# Cox model
+
+.large[
+Hazard function: $h(t)$
+
+- $t$ 까진 생존하고 $t$ 직후에 사망할 가능성
+
+Cox model: **Hazard Ratio(HR)** 을 평가
+
+
+$$
+\begin{aligned}
+h(t) &= \exp({\beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots}) \\\\
+     &= h_0(t) \exp({\beta_1 X_1 + \beta_2 X_2 + \cdots})     
+\end{aligned}
+$$
+$X_1$ 1 증가할 때 $h(t)$ 는 $\exp(\beta_1)$ 배 증가. 즉
+
+$$\text{HR} = \exp{(\beta_1)}$$
+
+]
+
+---
+# 특징
+
+.large[
+Kaplan-meier 와 마찬가지로 구간별로 통계량을 계산. 
+- 구간별 양상 비슷하다는 **비례위험가정**
+
+
+**Time independent HR**: 시간은 $h_0(t)$ 에만.
+- 모형이 심플: HR 값이 시간에 상관없이 일정함
+- Time dependent cox 도 가능.
+
+
+$h_0(t)$ 는 구하지 않는다. 계산 간단해지는 장점
+- Cox 가 준모수(semi-parametric) 방법이라고 불리는 이유
+- 예측모형 만들땐 문제. $h_0(t)$ 를 따로 얻어야 함.
+
+]
 
 ---
 
