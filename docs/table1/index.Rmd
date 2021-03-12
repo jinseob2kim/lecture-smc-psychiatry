@@ -2,7 +2,7 @@
 title: "기술통계 in 의학연구"
 author: 김진섭; [`r anicon::faa('github', animate='float', rtext='jinseob2kim')`](https://github.com/jinseob2kim)
 institute: "차라투"
-date: "2020-07-21"
+date: "2021-03-16"
 output:
   xaringan::moon_reader:
     css: ["css/footer-header.css", "default"]
@@ -25,7 +25,7 @@ editor_options:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo = T, fig.align = "center", message = F, warning = F)
-library(knitr);library(DT);library(reactable)
+library(knitr);library(DT)
 ```
 
 
@@ -63,7 +63,7 @@ layout: true
 # [회사 소개](https://www.zarathu.com)
 
 .large[
-맞춤형 의학통계지원을 업으로 하는 2년차 법인.
+맞춤형 의학통계지원을 업으로 하는 3년차 법인.
 
 - 의학연구자들에게 맞춤형 통계웹 제공.
 
@@ -73,12 +73,14 @@ layout: true
 
 - [Shinykorea](https://github.com/shinykorea/Meetup) 커뮤니티 후원: R로 웹만드는 공부모임
 
+- 카톡 오픈채팅: 프로그래밍 갤러리 R 사용자 모임
+
 ]
 
 --
 
 .large[
-- 팀원 없음. 의대생 2명 통계보조 알바.
+- 정식 팀원은 없고, 의대생 2명 원격근무.
 
 ]
 
@@ -90,7 +92,7 @@ layout: true
 
 - 성균관의대 03학번
 
-- 예방의학 전문의, 보건학 박사수료 (서울대 보건대학원)
+- 예방의학 전문의, 보건학 박사수료 (서울대 보건대학원, 유전체역학)
 
 - 소프트웨어 엔지니어, 삼성전자 무선사업부/DMC 연구소
 
@@ -99,10 +101,11 @@ layout: true
 ]
 
 ---
-# 2020년 진행 프로젝트 
+# 주요 프로젝트 
 
 - 대한심혈관중재학회 [COBIS III 레지스트리](https://clinicaltrials.gov/ct2/show/NCT03068494) 분석: [추가계약](http://pf.kakao.com/_XsuxgC/48388190)
 
+- 서울성모병원 소화기내과 항생제 비교 RCT 분석: [eCRF 구축 및 통계분석](https://pf.kakao.com/_XsuxgC/64511726)
 
 - 서울성모병원 [COREA-AMI II 레지스트리](https://clinicaltrials.gov/ct2/show/NCT02806102) 분석: [10개 연구 계약](http://pf.kakao.com/_XsuxgC/48043955)
 
@@ -119,10 +122,7 @@ layout: true
 - 삼성서울병원 이식외과 육종(sarcoma) 데이터 분석: [5개 연구 계약](http://pf.kakao.com/_XsuxgC/51701089) 
 
 
-- 해운대백병원 정신질환 네트워크분석: [논문 4편](http://pf.kakao.com/_XsuxgC/52664370) 게재
-
-
-- 성균관의대 환경역학연구실 [미세먼지 대시보드](http://pf.kakao.com/_XsuxgC/43627405)
+- 삼성서울병원 정신건강의학과 [분석 지원 및 통계 자문](https://pf.kakao.com/_XsuxgC/55192190)
 
 
 ---
@@ -170,7 +170,6 @@ class: center, middle
 https://www.evanmiller.org/ab-testing/t-test.html 에서 바로 가능.
 ]
 
-
 ---
 
 ```{r, echo = F}
@@ -213,6 +212,30 @@ ev.ttest
 
 
 ---
+
+```{r, fig.width=12}
+library(ggpubr)
+ggarrange(
+  ggboxplot(data.t, "sex", "tChol", fill = "sex"),
+  ggbarplot(data.t, "sex", "tChol", fill = "sex", add = "mean_sd")
+)
+```
+
+---
+
+```{r}
+ggboxplot(data.t, "sex", "tChol", fill = "sex", add = "dotplot") + 
+  stat_compare_means(method = "t.test", method.args = list(var.equal = F))
+```
+
+---
+```{r}
+ggviolin(data.t, "sex", "tChol", fill = "sex", add = "boxplot") + 
+   stat_compare_means(method = "t.test", method.args = list(var.equal = T), label.y = 250)
+```
+
+
+---
 # 2그룹: wilcox-test
 
 .large[
@@ -240,6 +263,11 @@ res.wilcox <- wilcox.test(tChol ~ sex, data = data.t)
 res.wilcox
 ```
 
+---
+```{r}
+ggboxplot(data.t, "sex", "tChol", fill = "sex") + 
+  stat_compare_means(method = "wilcox.test")
+```
 
 ---
 # 3그룹 이상: One-way ANOVA
@@ -283,6 +311,20 @@ res.aov2
 ]
 
 ---
+```{r}
+ggboxplot(data.aov, "group", "tChol", fill = "group", order = c("A", "B", "C")) + 
+  stat_compare_means(method = "anova")
+```
+
+---
+```{r}
+ggboxplot(data.aov, "group", "tChol", fill = "group", order = c("A", "B", "C")) + 
+  stat_compare_means(method = "anova", label.y = 250) + 
+  stat_compare_means(method = "t.test", comparisons = list(c("A", "B"), c("B", "C"), c("C", "A")))
+```
+
+
+---
 # 3그룹이상: Kruskal–Wallis ANOVA
 
 .large[
@@ -303,6 +345,13 @@ res.kruskal
 .large[
 > $p$-value는 `r round(res.kruskal$p.value, 3)`. 
 ]
+
+---
+```{r}
+ggboxplot(data.aov, "group", "tChol", fill = "group", order = c("A", "B", "C")) + 
+  stat_compare_means(method = "kruskal.test")
+```
+
 
 ---
 class: center, middle
@@ -465,6 +514,13 @@ pt.ttest.pair
 
 
 ---
+```{r}
+ggpaired(data.pt, cond1 = "SBP_hand", cond2 = "SBP_machine", fill = "condition", palette = "jco") + 
+  stat_compare_means(method = "t.test", paired = T)
+```
+
+
+---
 **Paired t-test**의 비모수버전은 **wilcoxon-signed rank test** 이며 아래와 같이 실행한다. 
 
 ```{r, echo = T}
@@ -472,10 +528,14 @@ pt.wilcox.pair <- wilcox.test(data.pt$SBP_hand, data.pt$SBP_machine, paired = T)
 pt.wilcox.pair
 ```
 
-
-
 - 본 강의에서는 다루지 않겠지만 짝지은 3개 이상의 그룹은 [**repeated measure ANOVA**](https://statistics.laerd.com/statistical-guides/repeated-measures-anova-statistical-guide.php) 를 이용한다. 
 
+
+---
+```{r}
+ggpaired(data.pt, cond1 = "SBP_hand", cond2 = "SBP_machine", fill = "condition", palette = "jco") + 
+  stat_compare_means(method = "wilcox.test", paired = T)
+```
 
 ---
 class: center, middle
