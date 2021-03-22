@@ -3,7 +3,7 @@
   <head>
     <title>회귀분석 in 의학연구</title>
     <meta charset="utf-8" />
-    <meta name="author" content="김진섭; " />
+    <meta name="author" content="김진섭; <span>&lt;i class="fab  fa-github faa-float animated "&gt;&lt;/i&gt;jinseob2kim</span>" />
     <meta name="date" content="2021-03-23" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
@@ -338,11 +338,8 @@ summary(lm(time ~ sex + age + rx, data = colon))$coefficients
 
 ---
 
-
-```{=html}
-&lt;div id="htmlwidget-089ea90544d0a3db7a96" style="width:100%;height:auto;" class="datatables html-widget"&gt;&lt;/div&gt;
-&lt;script type="application/json" data-for="htmlwidget-089ea90544d0a3db7a96"&gt;{"x":{"filter":"none","caption":"&lt;caption&gt;Linear regression predicting time\n&lt;\/caption&gt;","data":[["sex","age","rx: ref.=Obs","   Lev","   Lev+5FU","","No. of observations","R-squared","AIC value"],["29.26 (-58.88,117.39)","-0.06 (-3.76,3.64)",null,"39.62 (-66.79,146.03)","276.85 (169.97,383.72)","","1776","0.0171","29362.353"],["0.515","0.975",null,"0.466","&amp;lt; 0.001","","","",""],["45.86 (-41.87,133.58)","-0.17 (-3.84,3.5)",null,"38.35 (-68.14,144.85)","279.7 (172.65,386.76)","","","",""],["0.306","0.927",null,"0.48","&amp;lt; 0.001","","","",""],["","",null,"","**",null,null,null,null]],"container":"&lt;table class=\"display\"&gt;\n  &lt;thead&gt;\n    &lt;tr&gt;\n      &lt;th&gt; &lt;\/th&gt;\n      &lt;th&gt;crude coeff.(95%CI)&lt;\/th&gt;\n      &lt;th&gt;crude P value&lt;\/th&gt;\n      &lt;th&gt;adj. coeff.(95%CI)&lt;\/th&gt;\n      &lt;th&gt;adj. P value&lt;\/th&gt;\n      &lt;th&gt;sig&lt;\/th&gt;\n    &lt;\/tr&gt;\n  &lt;\/thead&gt;\n&lt;\/table&gt;","options":{"columnDefs":[{"visible":false,"targets":5},{"orderable":false,"targets":0}],"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nvar value=data[5]; $(row).css({'background-color':value == \"**\" ? \"yellow\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}&lt;/script&gt;
-```
+<div id="htmlwidget-0efdd719265f9d1e3bfe" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0efdd719265f9d1e3bfe">{"x":{"filter":"none","caption":"<caption>Linear regression predicting time\n<\/caption>","data":[["sex","age","rx: ref.=Obs","   Lev","   Lev+5FU","","No. of observations","R-squared","AIC value"],["29.26 (-58.88,117.39)","-0.06 (-3.76,3.64)",null,"39.62 (-66.79,146.03)","276.85 (169.97,383.72)","","1776","0.0171","29362.353"],["0.515","0.975",null,"0.466","&lt; 0.001","","","",""],["45.86 (-41.87,133.58)","-0.17 (-3.84,3.5)",null,"38.35 (-68.14,144.85)","279.7 (172.65,386.76)","","","",""],["0.306","0.927",null,"0.48","&lt; 0.001","","","",""],["","",null,"","**",null,null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>crude coeff.(95%CI)<\/th>\n      <th>crude P value<\/th>\n      <th>adj. coeff.(95%CI)<\/th>\n      <th>adj. P value<\/th>\n      <th>sig<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"visible":false,"targets":5},{"orderable":false,"targets":0}],"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nvar value=data[5]; $(row).css({'background-color':value == \"**\" ? \"yellow\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
 
 
 ---
@@ -424,11 +421,8 @@ summary(glm(status ~ sex + age + rx, data = colon, family = binomial))
 
 ---
 
-
-```{=html}
-&lt;div id="htmlwidget-f1bad72c1f08007f8495" style="width:100%;height:auto;" class="datatables html-widget"&gt;&lt;/div&gt;
-&lt;script type="application/json" data-for="htmlwidget-f1bad72c1f08007f8495"&gt;{"x":{"filter":"none","caption":"&lt;caption&gt;Logistic regression predicting status\n&lt;\/caption&gt;","data":[["sex","age","rx: ref.=Obs","   Lev","   Lev+5FU","","No. of observations","AIC value"],["0.93 (0.77,1.12)","1 (0.99,1)",null,"0.91 (0.72,1.14)","0.54 (0.43,0.68)","","1776","2437.8992"],["0.46","0.416",null,"0.413","&amp;lt; 0.001","","",""],["0.9 (0.74,1.08)","1 (0.99,1)",null,"0.91 (0.73,1.15)","0.54 (0.43,0.68)","","",""],["0.265","0.449",null,"0.438","&amp;lt; 0.001","","",""],["","",null,"","**",null,null,null]],"container":"&lt;table class=\"display\"&gt;\n  &lt;thead&gt;\n    &lt;tr&gt;\n      &lt;th&gt; &lt;\/th&gt;\n      &lt;th&gt;crude OR.(95%CI)&lt;\/th&gt;\n      &lt;th&gt;crude P value&lt;\/th&gt;\n      &lt;th&gt;adj. OR.(95%CI)&lt;\/th&gt;\n      &lt;th&gt;adj. P value&lt;\/th&gt;\n      &lt;th&gt;sig&lt;\/th&gt;\n    &lt;\/tr&gt;\n  &lt;\/thead&gt;\n&lt;\/table&gt;","options":{"columnDefs":[{"visible":false,"targets":5},{"orderable":false,"targets":0}],"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nvar value=data[5]; $(row).css({'background-color':value == \"**\" ? \"yellow\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}&lt;/script&gt;
-```
+<div id="htmlwidget-9581556d4442534cb65e" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9581556d4442534cb65e">{"x":{"filter":"none","caption":"<caption>Logistic regression predicting status\n<\/caption>","data":[["sex","age","rx: ref.=Obs","   Lev","   Lev+5FU","","No. of observations","AIC value"],["0.93 (0.77,1.12)","1 (0.99,1)",null,"0.91 (0.72,1.14)","0.54 (0.43,0.68)","","1776","2437.8992"],["0.46","0.416",null,"0.413","&lt; 0.001","","",""],["0.9 (0.74,1.08)","1 (0.99,1)",null,"0.91 (0.73,1.15)","0.54 (0.43,0.68)","","",""],["0.265","0.449",null,"0.438","&lt; 0.001","","",""],["","",null,"","**",null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>crude OR.(95%CI)<\/th>\n      <th>crude P value<\/th>\n      <th>adj. OR.(95%CI)<\/th>\n      <th>adj. P value<\/th>\n      <th>sig<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"visible":false,"targets":5},{"orderable":false,"targets":0}],"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nvar value=data[5]; $(row).css({'background-color':value == \"**\" ? \"yellow\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
 
 
 ---
@@ -484,7 +478,7 @@ S(t) &amp; = S(t-1) \times P(t)
 \end{aligned}`
 $$
 
-&lt;img src="https://t1.daumcdn.net/cfile/tistory/200AA9334F460EDE22" style="display: block; margin: auto;" /&gt;
+&lt;img src="LOGRANK.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 출처: https://dermabae.tistory.com/180
 
@@ -1433,11 +1427,8 @@ summary(coxph(Surv(time, status) ~ sex + age + rx, data = colon))
 
 ---
 
-
-```{=html}
-&lt;div id="htmlwidget-47ea76e98d0c9f800d23" style="width:100%;height:auto;" class="datatables html-widget"&gt;&lt;/div&gt;
-&lt;script type="application/json" data-for="htmlwidget-47ea76e98d0c9f800d23"&gt;{"x":{"filter":"none","caption":"&lt;caption&gt;Cox model on time ('time') to event ('status')&lt;\/caption&gt;","data":[["sex","age","rx: ref.=Obs","   Lev","   Lev+5FU",null,"No. of observations","No. of events"],["0.94 (0.83,1.08)","1 (0.99,1)",null,"0.95 (0.81,1.11)","0.64 (0.54,0.75)",null,"1776","876"],["0.383","0.557",null,"0.514","&amp;lt; 0.001",null,null,null],["0.93 (0.81,1.06)","1 (0.99,1)",null,"0.95 (0.82,1.11)","0.64 (0.54,0.75)",null,null,null],["0.286","0.691",null,"0.533","&amp;lt; 0.001",null,null,null],[null,null,null,null,"**",null,null,null]],"container":"&lt;table class=\"display\"&gt;\n  &lt;thead&gt;\n    &lt;tr&gt;\n      &lt;th&gt; &lt;\/th&gt;\n      &lt;th&gt;crude HR(95%CI)&lt;\/th&gt;\n      &lt;th&gt;crude P value&lt;\/th&gt;\n      &lt;th&gt;adj. HR(95%CI)&lt;\/th&gt;\n      &lt;th&gt;adj. P value&lt;\/th&gt;\n      &lt;th&gt;sig&lt;\/th&gt;\n    &lt;\/tr&gt;\n  &lt;\/thead&gt;\n&lt;\/table&gt;","options":{"columnDefs":[{"visible":false,"targets":5},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nvar value=data[5]; $(row).css({'background-color':value == \"**\" ? \"yellow\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}&lt;/script&gt;
-```
+<div id="htmlwidget-5e1f42dbb88762014f6f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5e1f42dbb88762014f6f">{"x":{"filter":"none","caption":"<caption>Cox model on time ('time') to event ('status')<\/caption>","data":[["sex","age","rx: ref.=Obs","   Lev","   Lev+5FU",null,"No. of observations","No. of events"],["0.94 (0.83,1.08)","1 (0.99,1)",null,"0.95 (0.81,1.11)","0.64 (0.54,0.75)",null,"1776","876"],["0.383","0.557",null,"0.514","&lt; 0.001",null,null,null],["0.93 (0.81,1.06)","1 (0.99,1)",null,"0.95 (0.82,1.11)","0.64 (0.54,0.75)",null,null,null],["0.286","0.691",null,"0.533","&lt; 0.001",null,null,null],[null,null,null,null,"**",null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>crude HR(95%CI)<\/th>\n      <th>crude P value<\/th>\n      <th>adj. HR(95%CI)<\/th>\n      <th>adj. P value<\/th>\n      <th>sig<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"visible":false,"targets":5},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nvar value=data[5]; $(row).css({'background-color':value == \"**\" ? \"yellow\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
 
 ---
 # Executive Summary 

@@ -366,8 +366,8 @@ S(t) & = S(t-1) \times P(t)
 \end{aligned}
 $$
 
-```{r, echo=F, fig.align='center'}
-include_graphics("https://t1.daumcdn.net/cfile/tistory/200AA9334F460EDE22")
+```{r, echo=F, fig.align='center', out.width="70%"}
+include_graphics("LOGRANK.png")
 ```
 
 출처: https://dermabae.tistory.com/180
