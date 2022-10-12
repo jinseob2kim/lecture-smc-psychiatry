@@ -2,7 +2,6 @@
 title: "회귀분석 in 의학연구"
 author: 김진섭; [`r anicon::faa('github', animate='float', rtext='jinseob2kim')`](https://github.com/jinseob2kim)
 institute: "차라투"
-date: "2021-03-23"
 output:
   xaringan::moon_reader:
     css: ["css/footer-header.css", "default"]
@@ -17,7 +16,6 @@ output:
       highlightLines: true
       countIncrementalSlides: false
       ratio: "4:3" 
-subtitle: "삼성서울병원 정신건강의학과 교육"
 editor_options: 
   chunk_output_type: console
 ---
@@ -25,7 +23,7 @@ editor_options:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo = T, fig.align = "center", message = F, warning = F)
-library(knitr);library(DT);library(survival);library(jstable);library(jskm)
+library(knitr);library(DT);library(survival);library(jstable);library(jskm);library(survsim)
 colon <- na.omit(colon)
 ```
 
@@ -52,79 +50,21 @@ layout: true
 
 ]
 
----
-# [회사 소개](https://www.zarathu.com)
-
-.large[
-맞춤형 의학통계지원을 업으로 하는 3년차 법인.
-
-- 의학연구자들에게 맞춤형 통계웹 제공.
-
-- 범용 통계웹 운영: http://app.zarathu.com
-
-- R 패키지 개발: [jskm](https://CRAN.R-project.org/package=jskm), [jstable](https://CRAN.R-project.org/package=jstable), [jsmodule](https://CRAN.R-project.org/package=jsmodule)
-
-- [Shinykorea](https://github.com/shinykorea/Meetup) 커뮤니티 후원: R로 웹만드는 공부모임
-
-- 카톡 오픈채팅: 프로그래밍 갤러리 R 사용자 모임
-
-]
-
---
-
-.large[
-- 정식 팀원은 없고, 의대생 2명 원격근무.
-
-]
-
----
-# 강의자 이력 
-
-.large[
-김진섭- https://jinseob2kim.github.io/resume
-
-- 성균관의대 03학번
-
-- 예방의학 전문의, 보건학 박사수료 (서울대 보건대학원)
-
-- 소프트웨어 엔지니어, 삼성전자 무선사업부/DMC 연구소
-
-- R User Conference Korea(RUCK) [2018](https://ruck2018.r-kor.org/presentations/RUCK2018-%EA%B9%80%EC%A7%84%EC%84%AD-%EB%A7%9E%EC%B6%A4%ED%98%95_%EC%9D%98%ED%95%99%ED%86%B5%EA%B3%84_%EC%95%B1_%EC%A0%9C%EC%9E%91%EC%9D%84_%EC%9C%84%ED%95%9C_%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD_%EA%B5%AC%EC%B6%95.html), [2019](https://jinseob2kim.github.io/LectureRpackage/RUCK2019) 발표
-
-]
-
----
-# 주요 프로젝트 
-
-- 대한심혈관중재학회 [COBIS III 레지스트리](https://clinicaltrials.gov/ct2/show/NCT03068494) 분석: [추가계약](http://pf.kakao.com/_XsuxgC/48388190)
-
-- 서울성모병원 소화기내과 항생제 비교 RCT 분석: [eCRF 구축 및 통계분석](https://pf.kakao.com/_XsuxgC/64511726)
-
-- 서울성모병원 [COREA-AMI II 레지스트리](https://clinicaltrials.gov/ct2/show/NCT02806102) 분석: [10개 연구 계약](http://pf.kakao.com/_XsuxgC/48043955)
-
-
-- 삼성서울병원 [공통데이터모델(CDM)](http://www.feedernet.org/html/?pmode=cdmdrn) 분석: [심평원 코로나데이터](https://hira-covid19.net/) 분석 중 
-
-
-- 강동성심병원 위암 위험인자 분석: 공단표본데이터 분석 중 
-
-
-- 경기도감염병관리지원단 코로나 대시보드 with Shinykorea: [최종보고](https://shinykorea.github.io/corona-activityrecord) 
-
-
-- 삼성서울병원 이식외과 육종(sarcoma) 데이터 분석: [5개 연구 계약](http://pf.kakao.com/_XsuxgC/51701089) 
-
-
-- 삼성서울병원 정신건강의학과 [분석 지원 및 통계 자문](https://pf.kakao.com/_XsuxgC/55192190)
-
 
 ---
 # 실습데이터 
+
+```{r, echo=T, eval = F}
+libary(survival)
+data(colon)
+colon
+```
 
 ```{r, echo=F}
 rmarkdown::paged_table(colon)
 
 ```
+
 
 
 ---
@@ -349,9 +289,8 @@ rmarkdown::paged_table(data.frame(time = colon$time, status = colon$status, surv
 - 보통 **logrank test p-value** 를 같이 보여줌.
 ]
 
-```{r, echo=F, fig.align='center'}
-include_graphics("https://t1.daumcdn.net/cfile/tistory/174245394F460EE01F")
-
+```{r, fig.align='center', fig.width=6.4, fig.height=4.5, dpi=300, out.width="50%"}
+jskm(survfit(Surv(time, status) ~ rx, data = colon), table = T, pval = T, marks = F)
 ```
 
 ---
@@ -473,6 +412,99 @@ hide <- which(colnames(out.cox) == c("sig"))
     
     
 ```
+
+---
+# 생존분석: 비례위험가정
+
+.large[
+트렌드 일정하다는 가정: **생존곡선 겹치면 안됨**
+]
+- 비례위험가정 test까진 필요없음: 그림으로 확인
+
+<center>
+<img src="https://i.stack.imgur.com/TzLk8.png" width=55%></a>
+</center>
+
+
+---
+# Landmark-analysis
+
+.large[
+시간 나눠 따로 분석]
+<center>
+<img src="https://blog.zarathu.com/posts/2020-10-29-survivalpractice/index_files/figure-html/unnamed-chunk-6-1.png" width=50%></a>
+</center>
+
+---
+# Time-dependent cox
+
+```{r, echo=F}
+vet2 <- survSplit(Surv(time, status) ~ ., data = veteran, cut=c(90, 180), episode = "tgroup", id = "id")
+rmarkdown::paged_table(vet2)
+
+```
+---
+# Time-dependet cox
+
+```{r, echo=F}
+vfit2 <- coxph(Surv(tstart, time, status) ~ trt + prior + karno:strata(tgroup), data=vet2)
+summary(vfit2)
+
+```
+
+
+---
+# Time-dependent covariate
+
+.large[
+생존분석 **모든 변수는 Index date 이전에 측정**해야
+]
+- 예) F/U lab, medication
+.large[
+Time-dependent covariate 다루려면 이를 고려한 cox 필요
+]
+
+```{r, echo=F}
+N=100 #number of patients
+set.seed(123)
+df.tf<-simple.surv.sim(#baseline time fixed
+ n=N, foltime=500,
+ dist.ev=c('llogistic'),
+ anc.ev=c(0.68), beta0.ev=c(5.8),
+ anc.cens=1.2,
+ beta0.cens=7.4,
+ z=list(c("unif", 0.8, 1.2)),
+ beta=list(c(-0.4),c(0)),
+ x=list(c("bern", 0.5),
+ c("normal", 70, 13)))
+for (v in 4:7){
+  df.tf[[v]] <- round(df.tf[[v]])
+}
+names(df.tf)[c(1,4,6,7)]<-c("id", "time", "grp","age")
+df.tf <- df.tf[, -3]
+ nft<-sample(1:10,
+ N,replace=T)#number of follow up time points
+crp<-round(abs(rnorm(sum(nft)+N,
+ mean=100,sd=40)),1)
+time<-NA
+id<-NA
+i=0
+for(n in nft){
+i=i+1
+time.n<-sample(1:500,n)
+time.n<-c(0,sort(time.n))
+time<-c(time,time.n)
+id.n<-rep(i,n+1)
+id<-c(id,id.n)
+}
+df.td <- cbind(data.frame(id,time)[-1,],crp)
+
+
+df <- tmerge(df.tf, df.tf, id = id, status1 = event(time, status))
+df2 <- tmerge(df, df.td, id = id, crp = tdc(time, crp))
+rmarkdown::paged_table(df2)
+```
+
 
 ---
 # Executive Summary 
