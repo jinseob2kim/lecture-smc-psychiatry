@@ -55,9 +55,10 @@ layout: true
 # 실습데이터 
 
 ```{r, echo=T, eval = F}
-libary(survival)
+library(survival); library(writexl)
 data(colon)
 colon
+write_xlsx(colon, path = "data/colon.xlsx")
 ```
 
 ```{r, echo=F}
