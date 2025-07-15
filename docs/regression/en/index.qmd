@@ -279,6 +279,10 @@ This allows comparison of crude vs. adjusted effects.
 
 **Used for Binary Outcomes: 0/1**
 
+```{r, echo=FALSE, out.width='70%'}
+knitr::include_graphics(here("images", "logistic_regression.jpg"))
+```
+
 $$ P(Y = 1) = \frac{\exp{(X)}}{1 + \exp{(X)}}$$
 
 
