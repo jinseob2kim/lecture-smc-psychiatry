@@ -78,9 +78,7 @@ datatable(data.t, rownames = FALSE, caption = "data.t: sex and total cholesterol
 ## T-test in SPSS
 
 ```{r, echo=FALSE, out.width='50%'}
-knitr::include_graphics(
-  normalizePath(here::here("images", c("spss_ttest.png", "spss_ttest2.png")))
-)
+knitr::include_graphics(here("docs", "table1_en", "images", c("spss_ttest.png", "spss_ttest2.png")))
 ```
 
 - Go to **Analyze → Compare Means and Proportions → Independent-Samples T Test**
@@ -90,7 +88,7 @@ knitr::include_graphics(
 ## T-test in SPSS
 
 ```{r, echo=FALSE, out.width='85%'}
-knitr::include_graphics(here("images", "spss_ttest3.png"))
+knitr::include_graphics(here("docs", "table1_en", "images", "spss_ttest3.png"))
 ```
 
 The mean difference in cholesterol (2.85) was not significant (p = .759 / .721) and the 95% CI included 0, indicating no difference between sexes.
@@ -108,25 +106,25 @@ The mean difference in cholesterol (2.85) was not significant (p = .759 / .721) 
 Go to **Graphs → Boxplot…**.
 
 ```{r, echo=FALSE, out.width='50%'}
-knitr::include_graphics(normalizePath(here::here("images", "box1.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "box1.png"))
 ```
 
 Select **Simple** and **Summaries for groups of cases**, then click **Define**.
 
 ```{r, echo=FALSE, out.width='50%'}
-knitr::include_graphics(normalizePath(here::here("images", "box2.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "box2.png"))
 ```
 
 Set `tChol` as the **Variable** and `sex` as the **Category Axis**, then click **OK**.
 
 ```{r, echo=FALSE, out.width='50%'}
-knitr::include_graphics(normalizePath(here::here("images", "box3.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "box3.png"))
 ```
 
 The boxplot displays the distribution of cholesterol levels by sex.
 
 ```{r, echo=FALSE, out.width='70%'}
-knitr::include_graphics(normalizePath(here::here("images", "boxplot1.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "boxplot1.png"))
 ```
 
 
@@ -135,19 +133,19 @@ knitr::include_graphics(normalizePath(here::here("images", "boxplot1.png"), must
 Go to **Graphs → Bar…**.
 
 ```{r, echo=FALSE, out.width='30%'}
-knitr::include_graphics(normalizePath(here::here("images", "bar1.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "bar1.png"))
 ```
 
 Select **Simple** and **Summaries for groups of cases**, then click **Define**.
 
 ```{r, echo=FALSE, out.width='40%'}
-knitr::include_graphics(normalizePath(here::here("images", "bar2.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "bar2.png"))
 ```
 
 Set `tChol` as the **Variable** (e.g., `MEAN(tChol)`) and `sex` as the **Category Axis**, then click **OK**.
 
 ```{r, echo=FALSE, out.width='60%'}
-knitr::include_graphics(normalizePath(here::here("images", "barplot1.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "barplot1.png"))
 ```
 
 The bar chart displays the **mean cholesterol levels** by sex.
@@ -179,23 +177,23 @@ Click **Add New Name** then **OK**. SPSS will automatically assign numeric codes
 Go to **Analyze → Nonparametric Tests → Legacy Dialogs → 2 Independent Samples…**.
 
 ```{r, echo=FALSE, out.width='65%'}
-knitr::include_graphics(normalizePath(here::here("images", "wilx4.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "wilx4.png"))
 ```
 
 Set `tChol` as the **Test Variable** and `sex_num` as the **Grouping Variable**, then click **Define Groups** and enter `1` and `2`.
 
 ```{r, echo=FALSE, out.width='60%'}
-knitr::include_graphics(normalizePath(here::here("images", "wilx5.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "wilx5.png"))
 ```
 
 ```{r, echo=FALSE, out.width='30%'}
-knitr::include_graphics(normalizePath(here::here("images", "wilx6.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "wilx6.png"))
 ```
 
 The output provides the **Mann–Whitney U test results**, including ranks and p-value.
 
 ```{r, echo=FALSE, out.width='65%'}
-knitr::include_graphics(normalizePath(here::here("images", "wilx7.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "wilx7.png"))
 ```
 
 # 3 or More Groups: One-way ANOVA
@@ -225,19 +223,19 @@ Select the string variable `group` to recode, and enter a new name like `group_n
 Click **Add New Name** then **OK**. SPSS will automatically assign numeric codes `'A' → 1`, `'B' → 2`, `'C' → 3`.
 
 ```{r, echo=FALSE, out.width='60%'}
-knitr::include_graphics(normalizePath(here::here("images", "aov3.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "aov3.png"))
 ```
 
 Go to **Analyze → Compare Means and Proportions → One-Way ANOVA…**.
 
 ```{r, echo=FALSE, out.width='50%'}
-knitr::include_graphics(normalizePath(here::here("images", "aov4.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "aov4.png"))
 ```
 
 Set `tChol` as the **Dependent List** and `group_num` as the **Factor**, then click **OK**.
 
 ```{r, echo=FALSE, out.width='50%'}
-knitr::include_graphics(normalizePath(here::here("images", "aov5.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "aov5.png"))
 ```
 
 The output displays the **F-statistic**, **p-value**, and **effect sizes** such as eta-squared.
@@ -247,11 +245,11 @@ The output displays the **F-statistic**, **p-value**, and **effect sizes** such 
 Go to **One-Way ANOVA… → Options…** and check **Welch test** to account for unequal variances.
 
 ```{r, echo=FALSE, out.width='40%'}
-knitr::include_graphics(normalizePath(here::here("images", "aov4-1.png")))
+knitr::include_graphics(here("docs", "table1_en", "images", "aov4-1.png"))
 ```
 
 ```{r, echo=FALSE, out.width='65%'}
-knitr::include_graphics(normalizePath(here::here("images", "aov4-2.png")))
+knitr::include_graphics(here("docs", "table1_en", "images", "aov4-2.png"))
 ```
 > Use the **$p$-value = 0.020 from unequal variance ANOVA**, which indicates a **statistically significant difference** in total cholesterol among the three groups.
 
@@ -268,24 +266,24 @@ When normality cannot be assumed: compare **medians** across three or more group
 Go to **Analyze → Nonparametric Tests → Legacy Dialogs → K Independent Samples…**
 
 ```{r, echo=FALSE, out.width='65%'}
-knitr::include_graphics(normalizePath(here::here("images", "kw1.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "kw1.png"))
 ```
 
 Move `tChol` into the **Test Variable List** and `group_num` into the **Grouping Variable** field.  
 Click **Define Range…** and enter minimum = `1`, maximum = `3`.
 
 ```{r, echo=FALSE, out.width='50%'}
-knitr::include_graphics(normalizePath(here::here("images", "kw2.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "kw2.png"))
 ```
 
 ```{r, echo=FALSE, out.width='30%'}
-knitr::include_graphics(normalizePath(here::here("images", "kw3.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "kw3.png"))
 ```
 
 Click **OK** to run the test. The output will include rank comparisons and the Kruskal–Wallis H statistic.
 
 ```{r, echo=FALSE, out.width='60%'}
-knitr::include_graphics(normalizePath(here::here("images", "kw4.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "kw4.png"))
 ```
 
 > Use the **$p$-value = 0.025** from the **Kruskal–Wallis test**, which indicates a **statistically significant difference** in total cholesterol across the three groups.
@@ -309,7 +307,7 @@ datatable(data.chi, rownames = FALSE, caption = "data.chi: HTN & DM medication")
 ## Chi-square Test in SPSS
 
 ```{r, echo=FALSE, out.width='40%'}
-knitr::include_graphics(normalizePath(here::here("images", "chi3.png")))
+knitr::include_graphics(here("docs", "table1_en", "images", "chi3.png"))
 ```
 
 At a glance, it’s hard to tell whether there is an association.  
@@ -320,20 +318,20 @@ Let’s perform a **Chi-square test** to find out.
 Go to **Analyze → Descriptive Statistics → Crosstabs…**
 
 ```{r, echo=FALSE, out.width='65%'}
-knitr::include_graphics(normalizePath(here::here("images", "chi1.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "chi1.png"))
 ```
 
 Set one variable `HTN_medi` as the **Row(s)** variable and another `DM_medi` as the **Column(s)** variable.  
 Click **Statistics…** and check **Chi-square**, then click **Continue**.
 
 ```{r, echo=FALSE, out.width='65%'}
-knitr::include_graphics(normalizePath(here::here("images", "chi2.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "chi2.png"))
 ```
 
 Click **OK** to run the test.
 
 ```{r, echo=FALSE, out.width='65%'}
-knitr::include_graphics(normalizePath(here::here("images", "chi4.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "chi4.png"))
 ```
 
 > Use **p-value = 0.474**, which indicates that there is **no statistically significant association** between hypertension medication and diabetes medication use.
@@ -356,13 +354,13 @@ datatable(data.fish, rownames = FALSE, caption = "data.fish: HTN & DM medication
 For this new dataset, let's first try applying the Chi-squared test.
 
 ```{r, echo = FALSE}
-knitr::include_graphics(here("images", "fish1.png"))
+knitr::include_graphics(here("docs", "table1_en", "images", "fish1.png"))
 ```
 
 Since **only 2 people are taking both medications**, one of the cells in the contingency table has a very small sample size.
 
 ```{r, echo = FALSE}
-knitr::include_graphics(here("images", "fish2.png"))
+knitr::include_graphics(here("docs", "table1_en", "images", "fish2.png"))
 ```
 
 SPSS gives us the following warning: **"1 cells (25.0%) have expected count less than 5. The minimum expected count is 2.20."** This violates the Chi-square test's assumptions, making its result unreliable. In such cases, it's better to use Fisher’s Exact Test, which does not rely on large sample approximations.
@@ -375,16 +373,16 @@ The first steps are the same as for Chi-Square.
 In **Crosstabs…**, go to **Cells…** then ensure **Observed** is checked under **Counts**.
 
 ```{r, echo = FALSE, out.width='50%'}
-knitr::include_graphics(normalizePath(here::here("images", "fish3.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "fish3.png"))
 ```
 
 Then, go to **Exact...** to check **Exact** to request Fisher's Exact Test.
 ```{r, echo = FALSE, out.width='50%'}
-knitr::include_graphics(normalizePath(here::here("images", "fish4.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "fish4.png"))
 ```
 
 ```{r, echo = FALSE}
-knitr::include_graphics(normalizePath(here::here("images", "fish5.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "fish5.png"))
 ```
 > Fisher’s Exact Test indicated no statistically significant association between the two variables, p = 1.000 (2-sided).
 
@@ -419,17 +417,17 @@ datatable(data.pt, rownames = FALSE, caption = "data.pt: systolic blood pressure
 
 Go to **Analyze → Compare Means → Paired-Samples T Test…**
 ```{r, echo = F, out.width='65%'}
-knitr::include_graphics(normalizePath(here::here("images", "pt1.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "pt1.png"))
 ```
 
 Select the two related variables (e.g., `SBP_hand` and `SBP_machine`) and move them into the **Paired Variables** box.
 ```{r, echo = F, out.width='65%'}
-knitr::include_graphics(normalizePath(here::here("images", "pt2.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "pt2.png"))
 ```
 
 Interpret the **Sig. (2-tailed)** value in the output.
 ```{r, echo = F, out.width='65%'}
-knitr::include_graphics(normalizePath(here::here("images", "pt3.png"), mustWork = FALSE))
+knitr::include_graphics(here("docs", "table1_en", "images", "pt3.png"))
 ```
 The test calculated the difference in SBP for each individual and then tested whether the mean of those differences was significantly different from zero, resulting in a p-value of 0.648.
 
@@ -440,22 +438,22 @@ which can be performed as follows:
 
 Go to **Analyze → Nonparametric Tests → Related Samples…**
 ```{r, echo = FALSE, out.width='65%'}
-knitr::include_graphics(normalizePath(here::here("images", "wst1.png")))
+knitr::include_graphics(here("docs", "table1_en", "images", "wst1.png"))
 ```
 
 Select the two related variables (e.g., `SBP_hand` and `SBP_machine`) and move them into the **Test Fields** box under the **Fields** tab.  
 ```{r, echo = FALSE, out.width='65%'}
-knitr::include_graphics(normalizePath(here::here("images", "wst2.png")))
+knitr::include_graphics(here("docs", "table1_en", "images", "wst2.png"))
 ```
 
 Go to the **Settings** tab, select **Customize tests**, and check **Wilcoxon matched-pair signed-rank (2 samples)**.  
 ```{r, echo = FALSE, out.width='65%'}
-knitr::include_graphics(normalizePath(here::here("images", "wst3.png")))
+knitr::include_graphics(here("docs", "table1_en", "images", "wst3.png"))
 ```
 
 Interpret the **Asymptotic Sig. (2-sided)** value in the output.  
 ```{r, echo = FALSE, out.width='65%'}
-knitr::include_graphics(normalizePath(here::here("images", "wst4.png")))
+knitr::include_graphics(here("docs", "table1_en", "images", "wst4.png"))
 ```
 
 The test ranked the differences in SBP between hand and machine measurements for each individual and tested whether the median difference was significantly different from zero. The result was a *p*-value of **0.940** — there is no statistically significant difference.
@@ -475,17 +473,17 @@ The test ranked the differences in SBP between hand and machine measurements for
 
 Go to **Analyze → Descriptive Statistics → Crosstabs…**  
 ```{r, echo = FALSE, out.width='65%'}
-knitr::include_graphics(normalizePath(here::here("images", "mc1.png")))
+knitr::include_graphics(here("docs", "table1_en", "images", "mc1.png"))
 ```
 
 Set `Pain_before` as the **Row(s)** variable and `Pain_after` as the **Column(s)** variable. Click **Statistics…**, then check **McNemar**.  
 ```{r, echo = FALSE, out.width='65%'}
-knitr::include_graphics(normalizePath(here::here("images", "mc2.png")))
+knitr::include_graphics(here("docs", "table1_en", "images", "mc2.png"))
 ```
 
 Click **OK** to run the test.  
 ```{r, echo = FALSE, out.width='65%'}
-knitr::include_graphics(normalizePath(here::here("images", "mc3.png")))
+knitr::include_graphics(here("docs", "table1_en", "images", "mc3.png"))
 ```
 
 > The **McNemar test** analyzes only the participants whose responses **changed between `Pain_before` and `Pain_after`** —  these are the **discordant pairs** (e.g., from 0 to 1 or 1 to 0).  

@@ -52,7 +52,7 @@ datatable(colon, rownames = FALSE)
 # Simple 
 
 ```{r, echo=FALSE, fig.align='center', out.width='85%'}
-knitr::include_graphics(here("images", "linear-regression.png"))
+knitr::include_graphics("images/linear-regression.png")
 ```
 
 $$Y = \beta_0 + \beta_1 X + \epsilon$$
@@ -72,18 +72,18 @@ Use the **Bivariate Correlation** function to test linear association between tw
 
 - **Analyze → Correlate → Bivariate…**
 ```{r, echo=FALSE, out.width='50%'}
-knitr::include_graphics(here("images", "cor1.png"))
+knitr::include_graphics("images/cor1.png")
 ```
 
 - Move **age** and **nodes** into the **Variables** box  
 - Select **Pearson** as the correlation coefficient  
 - Choose **Two-tailed** test of significance
 ```{r, echo=FALSE, out.width='50%'}
-knitr::include_graphics(here("images", "cor2.png"))
+knitr::include_graphics("images/cor2.png")
 ```
 
 ```{r, echo=FALSE, out.width='40%'}
-knitr::include_graphics(here("images", "cor3.png"))
+knitr::include_graphics("images/cor3.png")
 ```
 - **Pearson correlation**: r = -0.093  
 - **p-value**: < .001 → statistically significant  
@@ -97,16 +97,16 @@ This regression estimates how **age** affects **nodes** (number of affected lymp
 
 Go to **Analyze → Regression → Linear…**  
 ```{r, echo=FALSE, out.width='50%'}
-knitr::include_graphics(here("images", "lr1.png"))
+knitr::include_graphics("images/lr1.png")
 ```
 
 Set **nodes** as the **Dependent** variable and **age** as the **Independent(s)** variable.
 ```{r, echo=FALSE, out.width='50%'}
-knitr::include_graphics(here("images", "lr2.png"))
+knitr::include_graphics("images/lr2.png")
 ```
 
 ```{r, echo=FALSE, out.width='70%'}
-knitr::include_graphics(here("images", "lr3.png"))
+knitr::include_graphics("images/lr3.png")
 ```
 - **R = .093**, **R² = .009**: Very weak linear relationship
 
@@ -122,7 +122,7 @@ Go to **Analyze → Regression → Linear…**
 Set **age** as the **Dependent** variable and **nodes** as the **Independent(s)** variable.
 
 ```{r, echo=FALSE, out.width='80%'}
-knitr::include_graphics(here("images", "lr4(nodes).png"))
+knitr::include_graphics("images/lr4(nodes).png")
 ```
 - **R = .093**, **R² = .009**: Same strength as the previous model (symmetric)  
 - **Unstandardized coefficient for nodes = -0.309**, **p < .001**
@@ -137,7 +137,7 @@ Although both models are statistically significant (p < .001), the effect size (
 To compare the variable **time** between male and female groups using a t-test in SPSS:
 
 ```{r, echo=FALSE, out.width='70%'}
-knitr::include_graphics(here("images", "tt.png"))
+knitr::include_graphics("images/tt.png")
 ```
 
 - **t = -0.317**, **df = 1856**, **p = 0.751**  
@@ -150,18 +150,18 @@ We begin with a t-test because it is a simple, standard method for comparing gro
 This analysis fits a linear regression model where **time** is predicted by **sex**.
 
 ```{r, echo=FALSE, out.width='50%'}
-knitr::include_graphics(here("images", "lrt1.png"))
+knitr::include_graphics("images/lrt1.png")
 ```
 
 Go to **Analyze → Regression → Linear…**  
 Set **time** as the **Dependent** variable and **sex** as the **Independent(s)** variable.
 
 ```{r, echo=FALSE, out.width='50%'}
-knitr::include_graphics(here("images", "lrt2.png"))
+knitr::include_graphics("images/lrt2.png")
 ```
 
 ```{r, echo=FALSE, out.width='50%'}
-knitr::include_graphics(here("images", "lrt3.png"))
+knitr::include_graphics("images/lrt3.png")
 ```
 The regression result is consistent with the t-test:
 
@@ -175,9 +175,7 @@ The variable `rx` includes **three treatment groups**:
 - `2 = Lev+5FU`
 - `3 = Obs` (reference)  
 ```{r, echo=FALSE, out.width='50%'}
-knitr::include_graphics(
-  normalizePath(here::here("images", c("rrx1.png", "rrx2.png")))
-)
+knitr::include_graphics("images/rrx1.png")
 ```
 In SPSS, linear regression **does not automatically treat string variables as categorical**.
 To include a categorical variable like `rx` in a regression model, we must first convert it to numeric.
@@ -187,7 +185,7 @@ Use **Automatic Recode** if your original `rx` is a string variable. This assign
 > If it is a numeric variable, SPSS automatically chooses the lowest numeric value as the **reference category**.
 
 ```{r, echo=FALSE, out.width='80%'}
-knitr::include_graphics(here("images", "rx.png"))
+knitr::include_graphics("images/rrx2.png")
 ```
 This will assign numeric values starting from 1.
 
@@ -200,29 +198,29 @@ To include a 3-group variable in regression, create two dummy variables:
 - `rx_lev` = 1 if `rx_new == 1`, else 0  
 - `rx_lev5fu` = 1 if `rx_new == 2`, else 0
 ```{r, echo=FALSE, out.width='85%'}
-knitr::include_graphics(here("images", "rx3.png"))
+knitr::include_graphics("images/rx3.png")
 ```
 
 ```{r, echo=FALSE, out.width='85%'}
-knitr::include_graphics(here("images", "rx4.png"))
+knitr::include_graphics("images/rx4.png")
 ```
 The reference group **(row where all dummy variables are 0)** is **Obs**, which is not coded explicitly.
 
 Use **Analyze → Regression → Linear**  
 ```{r, echo=FALSE, out.width='85%'}
-knitr::include_graphics(here("images", "rx2.png"))
+knitr::include_graphics("images/rx2.png")
 ```
 - Dependent variable: `time`  
 - Independent variables: `rx_lev`, `rx_lev5fu`
 ```{r, echo=FALSE, out.width='85%'}
-knitr::include_graphics(here("images", "rx5.png"))
+knitr::include_graphics("images/rx5.png")
 ```
 
 The constant is the mean for the **Obs group**. Coefficients show the difference from Obs:
 - `rx_lev` = difference between **Lev** and **Obs**  
 - `rx_lev5fu` = difference between **Lev+5FU** and **Obs**
 ```{r, echo=FALSE, out.width='85%'}
-knitr::include_graphics(here("images", "rx6.png"))
+knitr::include_graphics("images/rx6.png")
 ```
 Only `rx_lev5fu` shows a significant difference (p < .001)
 
@@ -232,15 +230,15 @@ to test whether any of the `rx_new` groups differ overall.
 - Dependent = `time`  
 - Factor = `rx_new`  
 ```{r, echo=FALSE, out.width='85%'}
-knitr::include_graphics(here("images", "ano1.png"))
+knitr::include_graphics("images/ano1.png")
 ```
 - Options → Check **Homogeneity of variance test** (Levene’s test)  
 ```{r, echo=FALSE, out.width='40%'}
-knitr::include_graphics(here("images", "ano2.png"))
+knitr::include_graphics("images/ano2.png")
 ```
 This gives an overall p-value for overall group comparison.
 ```{r, echo=FALSE, out.width='85%'}
-knitr::include_graphics(here("images", "ano3.png"))
+knitr::include_graphics("images/ano3.png")
 ```
 
 # Multiple Variables
@@ -252,10 +250,10 @@ $$Y = \beta_0 + \beta_1 X_{1} + \beta_2 X_{2} + \cdots + \epsilon$$
 - Interpretation of $\beta_1$: When adjusting for $X_2$, $X_3$, etc., a one-unit increase in $X_1$ leads to an increase of $\beta_1$ in $Y$.
 
 ```{r, echo=FALSE, out.width='60%'}
-knitr::include_graphics(here("images", "multiple1.png"))
+knitr::include_graphics("images/multiple1.png")
 ```
 ```{r, echo=FALSE, out.width='70%'}
-knitr::include_graphics(here("images", "multiple2.png"))
+knitr::include_graphics("images/multiple2.png")
 ```
 
 ## In academic papers,
@@ -264,14 +262,21 @@ knitr::include_graphics(here("images", "multiple2.png"))
 
 **Unadjusted**
 Analyze each variable one at a time:
+
 - Go to **Analyze → Regression → Linear**
+
 - Set `time` as **Dependent**
+
 - Add one predictor (e.g., `sex`) to **Independent(s)**
+
 
 **Adjusted**
 Control for multiple variables:
+
 - Set `time` as **Dependent**
+
 - Add all predictors (e.g., `sex`, `age`, `rx`) to **Independent(s)**
+
 
 This allows comparison of crude vs. adjusted effects.
 
@@ -280,7 +285,7 @@ This allows comparison of crude vs. adjusted effects.
 **Used for Binary Outcomes: 0/1**
 
 ```{r, echo=FALSE, out.width='70%'}
-knitr::include_graphics(here("images", "logistic_regression.jpg"))
+knitr::include_graphics("images/logistic_regression.jpg")
 ```
 
 $$ P(Y = 1) = \frac{\exp{(X)}}{1 + \exp{(X)}}$$
@@ -304,20 +309,20 @@ Interpretation of $\beta_1$: When adjusting for $X_2$, $X_3$, etc., a one-unit i
 Go to `Analyze → Regression → Binary Logistic...`
 Move `status` to the **Dependent** box, `sex`, `age`, and `rx_new` into the **Covariates** box.
 ```{r, echo=FALSE, out.width='85%'}
-knitr::include_graphics(here("images", "odds1.png"))
+knitr::include_graphics("images/odds1.png")
 ```
 
 Click **Categorical...**  
 Select `rx_new`, move to **Categorical Covariates**  
 Set **Reference Category** to **Last** (e.g., `Obs`)  
 ```{r, echo=FALSE, out.width='85%'}
-knitr::include_graphics(here("images", "odds2.png"))
+knitr::include_graphics("images/odds2.png")
 ```
 
 **Exp(B)** gives odds ratios
 
 ```{r, echo=FALSE, out.width='85%'}
-knitr::include_graphics(here("images", "odds3.png"))
+knitr::include_graphics("images/odds3.png")
 ```
 
 # Cox proportional hazard
@@ -349,7 +354,7 @@ In survival analysis, Table 1 typically presents baseline characteristics.
 Go to **Analyze → Survival → Kaplan-Meier…**  
 Set `time` as **Time**, `status(1)` as **Status**, `rx_new` as **Factor**  
 ```{r, echo=FALSE, out.width='70%'}
-knitr::include_graphics(here("images", "kapp1.png"))
+knitr::include_graphics("images/kapp1.png")
 ```
 
 Click **Options** → Check:
@@ -359,7 +364,7 @@ Click **Options** → Check:
 - Survival plot   
 
 ```{r, echo=FALSE, out.width='40%'}
-knitr::include_graphics(here("images", "kapp2.png"))
+knitr::include_graphics("images/kapp2.png")
 ```
 
 Click **Compare Factor…** → Check:
@@ -368,7 +373,7 @@ Click **Compare Factor…** → Check:
 - Pooled over strata   
 
 ```{r, echo=FALSE, out.width='70%'}
-knitr::include_graphics(here("images", "kapp3.png"))
+knitr::include_graphics("images/kapp3.png")
 ```
 
 Click **OK** to see:
@@ -377,7 +382,7 @@ Click **OK** to see:
 - Log-rank p-value comparing survival curves  
 
 ```{r, echo=FALSE, out.width='85%'}
-knitr::include_graphics(here("images", "kapp4.png"))
+knitr::include_graphics("images/kapp4.png")
 ```
 
 
@@ -392,7 +397,7 @@ S(t) &= S(t-1) \times P(t)
 \end{aligned}
 $$
 ```{r, echo=FALSE, out.width='85%'}
-knitr::include_graphics(here("images", "LOGRANK.png"))
+knitr::include_graphics("images/LOGRANK.png")
 ```
 
 # Logrank test
@@ -444,13 +449,13 @@ $$\text{HR} = \exp{(\beta_1)}$$
 
 - Go to **Analyze → Survival → Cox Regression**  
 ```{r, echo=FALSE, out.width='65%'}
-knitr::include_graphics(here("images", "cox1.png"))
+knitr::include_graphics("images/cox1.png")
 ```
 
 - Set **Time** = `time`, **Status** = `status`  
   Click **Define Event**, enter value = 1  
 ```{r, echo=FALSE, out.width='65%'}
-knitr::include_graphics(here("images", "cox2.png"))
+knitr::include_graphics("images/cox2.png")
 ```
 
 - Move `sex`, `age`, `rx_new` to **Covariates**
@@ -458,17 +463,18 @@ knitr::include_graphics(here("images", "cox2.png"))
 - Click **Categorical**, add `rx_new`, set **Reference Category** to **Last**, click **Change**
 - `Exp(B)` = hazard ratio  
 ```{r, echo=FALSE, out.width='65%'}
-knitr::include_graphics(here("images", "cox3.png"))
+knitr::include_graphics("images/cox3.png")
 ```
 
 
-# Survival Analysis: Proportional Hazards Assumption
+# Survival Analysis: 
+**Proportional Hazards Assumption**
 
 Assumes a consistent trend: **survival curves should not cross**
 - No formal test for the assumption is strictly required — it can be checked visually.
 
 ```{r, echo=FALSE, out.width='80%'}
-knitr::include_graphics(here("images", "surva.png"))
+knitr::include_graphics("images/surva.png")
 ```
 
 
