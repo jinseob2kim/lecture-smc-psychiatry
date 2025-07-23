@@ -1,5 +1,5 @@
 ---
-title: "Regression Analysis in <br><b>Medical Research</b>"
+title: "Regression and <br><b>Survival Analysis</b>"
 author: 
   name: Jinseob Kim
   url: https://github.com/jinseob2kim
