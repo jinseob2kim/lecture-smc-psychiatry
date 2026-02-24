@@ -286,8 +286,8 @@ summary(lm(time ~ sex + age + rx, data = colon))$coefficients
 
 ---
 
-<div class="datatables html-widget html-fill-item" id="htmlwidget-853a6993d87d5f0c6e49" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-853a6993d87d5f0c6e49">{"x":{"filter":"none","vertical":false,"caption":"<caption>Linear regression predicting time\n<\/caption>","data":[["sex","age","rx: ref.=Obs","   Lev","   Lev+5FU","","No. of observations","R-squared","AIC value"],["29.26 (-58.88,117.39)","-0.06 (-3.76,3.64)",null,"39.62 (-66.79,146.03)","276.85 (169.97,383.72)","","1776","0.0171","29362.353"],["0.515","0.975",null,"0.466","&lt; 0.001","","","",""],["45.86 (-41.87,133.58)","-0.17 (-3.84,3.5)",null,"38.35 (-68.14,144.85)","279.7 (172.65,386.76)","","","",""],["0.306","0.927",null,"0.48","&lt; 0.001","","","",""],["","",null,"","**",null,null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>crude coeff.(95%CI)<\/th>\n      <th>crude P value<\/th>\n      <th>adj. coeff.(95%CI)<\/th>\n      <th>adj. P value<\/th>\n      <th>sig<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"visible":false,"targets":5},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"crude coeff.(95%CI)","targets":1},{"name":"crude P value","targets":2},{"name":"adj. coeff.(95%CI)","targets":3},{"name":"adj. P value","targets":4},{"name":"sig","targets":5}],"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[5]; $(row).css({'background-color':value == \"**\" ? \"yellow\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-be54b0cb5e40f0755424" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-be54b0cb5e40f0755424">{"x":{"filter":"none","vertical":false,"caption":"<caption>Linear regression predicting time\n<\/caption>","data":[["sex","age","rx: ref.=Obs","   Lev","   Lev+5FU","","No. of observations","R-squared","AIC value"],["29.26 (-58.88,117.39)","-0.06 (-3.76,3.64)",null,"39.62 (-66.79,146.03)","276.85 (169.97,383.72)","","1776","0.0171","29362.353"],["0.515","0.975",null,"0.466","&lt; 0.001","","","",""],["45.86 (-41.87,133.58)","-0.17 (-3.84,3.5)",null,"38.35 (-68.14,144.85)","279.7 (172.65,386.76)","","","",""],["0.306","0.927",null,"0.48","&lt; 0.001","","","",""],["","",null,"","**",null,null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>crude coeff.(95%CI)<\/th>\n      <th>crude P value<\/th>\n      <th>adj. coeff.(95%CI)<\/th>\n      <th>adj. P value<\/th>\n      <th>sig<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"visible":false,"targets":5},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"crude coeff.(95%CI)","targets":1},{"name":"crude P value","targets":2},{"name":"adj. coeff.(95%CI)","targets":3},{"name":"adj. P value","targets":4},{"name":"sig","targets":5}],"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[5]; $(row).css({'background-color':value == \"**\" ? \"yellow\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
 
 
 ---
@@ -300,7 +300,7 @@ class: center, middle
 
 ---
 
-&lt;img src="https://static.javatpoint.com/tutorial/machine-learning/images/linear-regression-vs-logistic-regression.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="logistic.png" width="853" style="display: block; margin: auto;" /&gt;
 
 .large[
 $$ P(Y = 1) = \frac{\exp{(X)}}{1 + \exp{(X)}}$$
@@ -365,8 +365,8 @@ summary(glm(status ~ sex + age + rx, data = colon, family = binomial))
 
 ---
 
-<div class="datatables html-widget html-fill-item" id="htmlwidget-e8e787e564e06307d19e" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e8e787e564e06307d19e">{"x":{"filter":"none","vertical":false,"caption":"<caption>Logistic regression predicting status\n<\/caption>","data":[["sex","age","rx: ref.=Obs","   Lev","   Lev+5FU","","No. of observations","AIC value"],["0.93 (0.77,1.12)","1 (0.99,1)",null,"0.91 (0.72,1.14)","0.54 (0.43,0.68)","","1776","2437.8992"],["0.46","0.416",null,"0.413","&lt; 0.001","","",""],["0.9 (0.74,1.08)","1 (0.99,1)",null,"0.91 (0.73,1.15)","0.54 (0.43,0.68)","","",""],["0.265","0.449",null,"0.438","&lt; 0.001","","",""],["","",null,"","**",null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>crude OR.(95%CI)<\/th>\n      <th>crude P value<\/th>\n      <th>adj. OR.(95%CI)<\/th>\n      <th>adj. P value<\/th>\n      <th>sig<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"visible":false,"targets":5},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"crude OR.(95%CI)","targets":1},{"name":"crude P value","targets":2},{"name":"adj. OR.(95%CI)","targets":3},{"name":"adj. P value","targets":4},{"name":"sig","targets":5}],"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[5]; $(row).css({'background-color':value == \"**\" ? \"yellow\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-88f0ead7c2fdf3e5a6c2" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-88f0ead7c2fdf3e5a6c2">{"x":{"filter":"none","vertical":false,"caption":"<caption>Logistic regression predicting status\n<\/caption>","data":[["sex","age","rx: ref.=Obs","   Lev","   Lev+5FU","","No. of observations","AIC value"],["0.93 (0.77,1.12)","1 (0.99,1)",null,"0.91 (0.72,1.14)","0.54 (0.43,0.68)","","1776","2437.8992"],["0.46","0.416",null,"0.413","&lt; 0.001","","",""],["0.9 (0.74,1.08)","1 (0.99,1)",null,"0.91 (0.73,1.15)","0.54 (0.43,0.68)","","",""],["0.265","0.449",null,"0.438","&lt; 0.001","","",""],["","",null,"","**",null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>crude OR.(95%CI)<\/th>\n      <th>crude P value<\/th>\n      <th>adj. OR.(95%CI)<\/th>\n      <th>adj. P value<\/th>\n      <th>sig<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"visible":false,"targets":5},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"crude OR.(95%CI)","targets":1},{"name":"crude P value","targets":2},{"name":"adj. OR.(95%CI)","targets":3},{"name":"adj. P value","targets":4},{"name":"sig","targets":5}],"scrollX":true,"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[5]; $(row).css({'background-color':value == \"**\" ? \"yellow\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
 
 
 ---
@@ -1376,8 +1376,8 @@ summary(coxph(Surv(time, status) ~ sex + age + rx, data = colon))
 
 ---
 
-<div class="datatables html-widget html-fill-item" id="htmlwidget-21870c7485d6f54caede" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-21870c7485d6f54caede">{"x":{"filter":"none","vertical":false,"caption":"<caption>Cox model on time ('time') to event ('status')<\/caption>","data":[["sex","age","rx: ref.=Obs","   Lev","   Lev+5FU",null,"No. of observations","No. of events","AIC","C-Index"],["0.94 (0.83,1.08)","1 (0.99,1)",null,"0.95 (0.81,1.11)","0.64 (0.54,0.75)",null,"1776","876","12473.7411678183","0.55(0.01)"],["0.383","0.557",null,"0.514","&lt; 0.001",null,null,null,null,null],["0.93 (0.81,1.06)","1 (0.99,1)",null,"0.95 (0.82,1.11)","0.64 (0.54,0.75)",null,null,null,null,null],["0.286","0.691",null,"0.533","&lt; 0.001",null,null,null,null,null],[null,null,null,null,"**",null,null,null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>crude HR(95%CI)<\/th>\n      <th>crude P value<\/th>\n      <th>adj. HR(95%CI)<\/th>\n      <th>adj. P value<\/th>\n      <th>sig<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"visible":false,"targets":5},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"crude HR(95%CI)","targets":1},{"name":"crude P value","targets":2},{"name":"adj. HR(95%CI)","targets":3},{"name":"adj. P value","targets":4},{"name":"sig","targets":5}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[5]; $(row).css({'background-color':value == \"**\" ? \"yellow\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-15216da0e9e825e44167" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-15216da0e9e825e44167">{"x":{"filter":"none","vertical":false,"caption":"<caption>Cox model on time ('time') to event ('status')<\/caption>","data":[["sex","age","rx: ref.=Obs","rxLev","rxLev+5FU",null,"No. of observations","No. of events","AIC","C-Index"],["0.94 (0.83,1.08)","1 (0.99,1)",null,"0.95 (0.81,1.11)","0.64 (0.54,0.75)",null,"1776","876","12473.7411678183","0.55(0.01)"],["0.383","0.557",null,"0.514","&lt; 0.001",null,null,null,null,null],["0.93 (0.81,1.06)","1 (0.99,1)",null,"0.95 (0.82,1.11)","0.64 (0.54,0.75)",null,null,null,null,null],["0.286","0.691",null,"0.533","&lt; 0.001",null,null,null,null,null],[null,null,null,null,"**",null,null,null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>crude HR(95%CI)<\/th>\n      <th>crude P value<\/th>\n      <th>adj. HR(95%CI)<\/th>\n      <th>adj. P value<\/th>\n      <th>sig<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"visible":false,"targets":5},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"crude HR(95%CI)","targets":1},{"name":"crude P value","targets":2},{"name":"adj. HR(95%CI)","targets":3},{"name":"adj. P value","targets":4},{"name":"sig","targets":5}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[5]; $(row).css({'background-color':value == \"**\" ? \"yellow\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
 
 ---
 # 생존분석: 비례위험가정
@@ -1485,11 +1485,11 @@ class: center, middle
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="js/macros.js"></script>
 <script>var slideshow = remark.create({
-"slideNumberFormat": "<div class=\"progress-bar-container\">\n  </div>\n  <div class=\"progress-bar\" style=\"width: calc(%current% / %total% * 100%);\">\n",
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false,
-"ratio": "4:3"
+  "slideNumberFormat": "<div class=\"progress-bar-container\">\n  </div>\n  <div class=\"progress-bar\" style=\"width: calc(%current% / %total% * 100%);\">\n",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false,
+  "ratio": "4:3"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

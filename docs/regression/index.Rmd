@@ -194,7 +194,7 @@ class: center, middle
 ---
 
 ```{r, echo=F, fig.align='center'}
-include_graphics("https://static.javatpoint.com/tutorial/machine-learning/images/linear-regression-vs-logistic-regression.png")
+include_graphics("logistic.png")
 ```
 
 .large[
